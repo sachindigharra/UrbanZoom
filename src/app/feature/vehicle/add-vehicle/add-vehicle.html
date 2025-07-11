@@ -1,81 +1,69 @@
-<div class="min-h-screen flex items-center justify-center bg-gray-100" [ngClass]="{'opacity-50': isLoading}" >
+<div class="min-h-screen flex items-center justify-center bg-gray-100 back" [ngClass]="{'opacity-50': isLoading}" >
   <!-- Loader component -->
-  <app-loader *ngIf="isLoading" [ngClass]="{'absolute inset-0 flex items-center justify-center bg-gray-200 bg-opacity-50 z-50':isLoading}"></app-loader>
+  <app-loader *ngIf="isLoading" [ngClass]="{' flex items-center justify-center bg-gray-200  z-50':isLoading}"></app-loader>
   <form [formGroup]="vehicleForm" (ngSubmit)="onSubmit()" class="bg-white p-10 rounded-xl shadow-lg w-full max-w-6xl">
     <div class="grid gap-6 mb-6 md:grid-cols-2">
       <!-- Registered ID -->
 
       <div>
-        <label for="registered_id" class="block mb-2 text-sm font-medium text-gray-900">Registered ID</label>
-        <input formControlName="registered_id" id="registered_id" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="DL01AB1234" />
+        <label for="registered_id" class="block text-sm/6 font-semibold text-gray-900">Registered ID</label>
+        <input formControlName="registered_id" id="registered_id" class="block w-full rounded-md bg-white px-3.5 py-2 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600" placeholder="DL01AB1234" />
         <div *ngIf="vehicleForm.get('registered_id')?.invalid && vehicleForm.get('registered_id')?.touched" class="text-red-400 text-sm m-1">
           Must be in format DL01AB1234.
         </div>
       </div>
       <!-- Brand -->
       <div>
-        <label for="brand" class="block mb-2 text-sm font-medium text-gray-900">Brand</label>
-        <input formControlName="brand" id="brand" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="XYZ" />
+        <label for="brand" class="block text-sm/6 font-semibold text-gray-900">Brand</label>
+        <input formControlName="brand" id="brand" class="block w-full rounded-md bg-white px-3.5 py-2 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600" placeholder="XYZ" />
         <div *ngIf="vehicleForm.get('brand')?.invalid && vehicleForm.get('brand')?.touched" class="text-red-400 text-sm m-1">
           Field Required
         </div>
       </div>
       <!-- Model -->
       <div>
-        <label for="model" class="block mb-2 text-sm font-medium text-gray-900">Model</label>
-        <input formControlName="model" id="model" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Dzire, Verna" />
+        <label for="model" class="block text-sm/6 font-semibold text-gray-900">Model</label>
+        <input formControlName="model" id="model" class="block w-full rounded-md bg-white px-3.5 py-2 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600" placeholder="Dzire, Verna" />
         <div *ngIf="vehicleForm.get('model')?.invalid && vehicleForm.get('model')?.touched" class="text-red-400 text-sm m-1">
           Field Required
         </div>
       </div>
       <!-- Type -->
       <div>
-        <label for="type" class="block mb-2 text-sm font-medium text-gray-900">Type</label>
-        <input formControlName="type" id="type" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Sports, Sedan" />
+        <label for="type" class="block text-sm/6 font-semibold text-gray-900">Type</label>
+        <input formControlName="type" id="type" class="block w-full rounded-md bg-white px-3.5 py-2 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600" placeholder="Sports, Sedan" />
         <div *ngIf="vehicleForm.get('type')?.invalid && vehicleForm.get('type')?.touched" class="text-red-400 text-sm m-1">
           Field Required
         </div>
       </div>
       <!-- Seater -->
       <div>
-        <label for="seater" class="block mb-2 text-sm font-medium text-gray-900">Seater</label>
-        <input type="number" formControlName="seater" id="seater" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="4" />
+        <label for="seater" class="block text-sm/6 font-semibold text-gray-900">Seater</label>
+        <input type="number" formControlName="seater" id="seater" class="block w-full rounded-md bg-white px-3.5 py-2 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600" placeholder="4" />
         <div *ngIf="vehicleForm.get('seater')?.invalid && vehicleForm.get('seater')?.touched" class="text-red-400 text-sm m-1">
           Should be 1 or more
         </div>
       </div>
       <!-- Price Per Day -->
       <div>
-        <label for="pricePerDay" class="block mb-2 text-sm font-medium text-gray-900">Price/Day</label>
-        <div class="mt-2">
-          <div class="flex items-center rounded-md bg-white pl-3 outline-1 -outline-offset-1 outline-gray-300 has-[input:focus-within]:outline-2 has-[input:focus-within]:-outline-offset-2 has-[input:focus-within]:outline-indigo-600">
-            <div class="shrink-0 text-base text-gray-500 select-none sm:text-sm/6">₹</div>
-            <input type="number" formControlName="pricePerDay" id="pricePerDay" class="bg-gray-50 border border-white-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="0" />
-          </div>
-          <div *ngIf="vehicleForm.get('pricePerDay')?.invalid && vehicleForm.get('pricePerDay')?.touched" class="text-red-400 text-sm m-1">
+        <label for="pricePerDay" class="block text-sm/6 font-semibold text-gray-900">pricePerDay</label>
+        <input type="number" formControlName="pricePerDay" id="pricePerDay" class="block w-full rounded-md bg-white px-3.5 py-2 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600" placeholder="4" />
+        <div *ngIf="vehicleForm.get('pricePerDay')?.invalid && vehicleForm.get('pricePerDay')?.touched" class="text-red-400 text-sm m-1">
             Price must be greater than 0
           </div>
-        </div>
       </div>
       <!-- Category -->
       <div>
-        <label for="category" class="block mb-2 text-sm font-medium text-gray-900">Category</label>
-        <input formControlName="category" id="category" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Premium, General" />
+        <label for="category" class="block text-sm/6 font-semibold text-gray-900">Category</label>
+        <input formControlName="category" id="category" class="block w-full rounded-md bg-white px-3.5 py-2 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600" placeholder="Premium, General" />
         <div *ngIf="vehicleForm.get('category')?.invalid && vehicleForm.get('category')?.touched" class="text-red-400 text-sm m-1">
           Field Required
         </div>
       </div>
       <!-- Location -->
       <div>
-        <label for="locate" class="block mb-2 text-sm font-medium text-gray-900">Location</label>
-        <div class="relative">
-          <div class="absolute inset-y-0 start-0 top-0 flex items-center ps-3.5 pointer-events-none">
-            <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 20">
-             
-            </svg>
-          </div>
-          <input type="text" formControlName="locate" id="locate" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Enter location" />
-        </div>
+        <label for="locate" class="block text-sm/6 font-semibold text-gray-900">Location</label>
+        <input type="text" formControlName="locate" id="locate" class="block w-full rounded-md bg-white px-3.5 py-2 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600" placeholder="Enter location" />
         <div *ngIf="vehicleForm.get('locate')?.invalid && vehicleForm.get('locate')?.touched" class="text-red-400 text-sm m-1">
           Field Required
         </div>
@@ -83,7 +71,7 @@
       <!-- Image Upload -->
       <div>
         <label class="block mb-2 text-sm font-medium text-gray-900" for="file_input">Upload Image</label>
-        <input (change)="onFileSelected($event)" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500" aria-describedby="file_input_help" id="file_input" type="file" accept="image/png,image/jpeg,image/gif,image/svg+xml">
+        <input (change)="onFileSelected($event)" class="block w-full rounded-md bg-white px-3.5 py-2 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600" aria-describedby="file_input_help" id="file_input" type="file" accept="image/png,image/jpeg,image/gif,image/svg+xml">
         <p class="mt-1 text-sm text-gray-500 dark:text-gray-300" id="file_input_help">SVG, PNG, JPG, or GIF (MAX. 800x400px).</p>
         <div *ngIf="vehicleForm.get('secure_url')?.invalid && vehicleForm.get('secure_url')?.touched" class="text-red-500 text-xs">
           Valid image URL required
