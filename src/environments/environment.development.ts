@@ -2,7 +2,7 @@ export const environment = {
   production: true,
   apiUrls: {
     vehicle: 'http://localhost:8080/api/vehicle',
-    user: 'http://localhost:8082/api/users',
+    user: 'http://localhost:8082/api/user',
     feedback: 'http://localhost:8083/api/feedback',
     auth: 'http://localhost:8084/api/auth',
     booking: 'http://localhost:8085/api/bookings'

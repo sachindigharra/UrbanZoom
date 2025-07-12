@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnInit,} from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { AuthService } from '../../../core/services/auth.service';
 import { CommonModule } from '@angular/common';
@@ -9,7 +9,14 @@ import { CommonModule } from '@angular/common';
   templateUrl: './header.html',
   styleUrl: './header.css'
 })
-export class Header {
+export class Header implements OnInit {
+
+  ngOnInit(): void {
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'dark') {
+      document.documentElement.classList.add('dark');
+    }
+  }
   //constructor(private authService:AuthService){}
   authService = inject(AuthService);
     role:string='';
@@ -23,5 +30,10 @@ export class Header {
   mobileToggle(){
     this.ismobileEnable=!this.ismobileEnable;
   }
+toggleTheme(): void {
+  const html = document.documentElement;
+  const isDark = html.classList.toggle('dark');
+  localStorage.setItem('theme', isDark ? 'dark' : 'light');
+}
 
 }

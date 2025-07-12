@@ -1,0 +1,90 @@
+<div class="min-h-screen flex items-center justify-center bg-gray-100" >
+  <!-- Loading Overlay -->
+  <!-- <div *ngIf="isLoading" class="absolute inset-0 flex items-center justify-center bg-gray-200 bg-opacity-50 z-50">
+    <div class="text-center">
+      <svg class="animate-spin h-10 w-10 text-blue-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+        <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"></path>
+      </svg>
+      <p class="mt-2 text-gray-700">Loading...</p>
+    </div>
+  </div> -->
+
+  <form [formGroup]="userProfileForm" (ngSubmit)="onSubmit()" class="bg-white p-10 rounded-xl shadow-lg w-full max-w-6xl" [class.pointer-events-none]="isLoading">
+    <div class="grid gap-6 mb-6 md:grid-cols-2">
+      <!-- Image Upload -->
+      <div>
+        <label class="block mb-2 text-sm font-medium text-gray-900" for="file_input">Profile Image</label>
+        <input *ngIf="isEditMode" (change)="onFileSelected($event)" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500" aria-describedby="file_input_help" id="file_input" type="file" accept="image/png,image/jpeg,image/gif,image/svg+xml" [disabled]="isLoading" />
+        <img *ngIf="!isEditMode && userProfileForm.get('secure_url')?.value" [src]="userProfileForm.get('secure_url')?.value" class="w-32 h-32 object-cover rounded-full" alt="Profile Image" />
+        <p *ngIf="!isEditMode && !userProfileForm.get('secure_url')?.value" class="text-gray-500">No image available</p>
+        <p class="mt-1 text-sm text-gray-500 dark:text-gray-300" id="file_input_help">SVG, PNG, JPG, or GIF (MAX. 800x400px).</p>
+        <div *ngIf="userProfileForm.get('secure_url')?.invalid && userProfileForm.get('secure_url')?.touched" class="text-red-500 text-xs">
+          Valid image URL required
+        </div>
+      </div>
+      <!-- Phone -->
+      <div>
+        <label for="phone" class="block mb-2 text-sm font-medium text-gray-900">Phone Number</label>
+        <input formControlName="phone" id="phone" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="9876543210" [disabled]="isLoading || !isEditMode" />
+        <div *ngIf="userProfileForm.get('phone')?.invalid && userProfileForm.get('phone')?.touched" class="text-red-400 text-sm m-1">
+          Invalid phone number (must start with 6-9 and be 10 digits)
+        </div>
+      </div>
+      <!-- Driving License -->
+      <div>
+        <label for="drivingLicense" class="block mb-2 text-sm font-medium text-gray-900">Driving License Number</label>
+        <input formControlName="drivingLicense" id="drivingLicense" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="DL0120041234567" [disabled]="isLoading || !isEditMode" />
+        <div *ngIf="userProfileForm.get('drivingLicense')?.invalid && userProfileForm.get('drivingLicense')?.touched" class="text-red-400 text-sm m-1">
+          Invalid driving license number (e.g., DL0120041234567)
+        </div>
+      </div>
+      <!-- Date of Birth -->
+      <div>
+        <label for="dateOfBirth" class="block mb-2 text-sm font-medium text-gray-900">Date of Birth</label>
+        <input type="date" formControlName="dateOfBirth" id="dateOfBirth" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500" [disabled]="isLoading || !isEditMode" />
+        <div *ngIf="userProfileForm.get('dateOfBirth')?.invalid && userProfileForm.get('dateOfBirth')?.touched" class="text-red-400 text-sm m-1">
+          Date of birth is required and must be in the past
+        </div>
+      </div>
+      <!--Soon-->
+      <!-- Gender -->
+      <div>
+        <label for="gender" class="block mb-2 text-sm font-medium text-gray-900">Gender</label>
+        <select formControlName="gender" id="gender" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500" [disabled]="isLoading || !isEditMode">
+          <option value="" disabled selected>Select gender</option>
+          <option value="MALE">Male</option>
+          <option value="FEMALE">Female</option>
+          <option value="OTHER">Other</option>
+        </select>
+        <div *ngIf="userProfileForm.get('gender')?.invalid && userProfileForm.get('gender')?.touched" class="text-red-400 text-sm m-1">
+          Gender is required
+        </div>
+      </div>
+      <!-- Address -->
+      <div>
+        <label for="address" class="block mb-2 text-sm font-medium text-gray-900">Address</label>
+        <input formControlName="address" id="address" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Enter address" [disabled]="isLoading || !isEditMode" />
+        <div *ngIf="userProfileForm.get('address')?.invalid && userProfileForm.get('address')?.touched" class="text-red-400 text-sm m-1">
+          Address is required
+        </div>
+      </div>
+      <!-- Aadhar Number -->
+      <div>
+        <label for="aadharNumber" class="block mb-2 text-sm font-medium text-gray-900">Aadhar Number</label>
+        <input formControlName="aadharNumber" id="aadharNumber" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="123456789012" [disabled]="isLoading || !isEditMode" />
+        <div *ngIf="userProfileForm.get('aadharNumber')?.invalid && userProfileForm.get('aadharNumber')?.touched" class="text-red-400 text-sm m-1">
+          Invalid Aadhar number (12 digits, starting with 2-9)
+        </div>
+      </div>
+    </div>
+    <div class="flex space-x-4">
+      <button type="button" (click)="toggleEditMode()" class="bg-blue-600 text-white px-4 py-2 rounded" [disabled]="isLoading">
+        {{ isEditMode ? 'Cancel' : 'Edit' }}
+      </button>
+      <button *ngIf="isEditMode" type="submit" class="bg-yellow-600 text-white px-4 py-2 rounded" [disabled]="isLoading">
+        Update
+      </button>
+    </div>
+  </form>
+</div>
