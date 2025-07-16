@@ -32,10 +32,10 @@
         <div class="hidden sm:ml-6 sm:block m-2">
           <div class="flex space-x-4">
             <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
-              <a *ngIf="authService.isAdmin()" routerLink="home" class="rounded-md bg-gray-900 px-3 py-2 text-sm  font-medium text-white cursor-pointer">Dashboard</a>
-              <a *ngIf="authService.isOwner()" routerLink="/my-vehicles"  class="rounded-md bg-gray-900 px-3 py-2 text-sm  font-medium text-white cursor-pointer whitespace-nowrap">My Vehicles</a>
-              <a *ngIf="authService.isUser()" routerLink="home"  class="rounded-md bg-gray-900 px-3 py-2 text-sm font-medium text-white cursor-pointer" aria-current="page">Home</a>
-              <a routerLink="add" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white cursor-pointer whitespace-nowrap">Add Vehicle</a>
+              <a *ngIf=" role=='ADMIN' " routerLink="home" class="rounded-md bg-gray-900 px-3 py-2 text-sm  font-medium text-white cursor-pointer">Dashboard</a>
+              <a *ngIf=" role=='OWNER' " routerLink="/my-vehicles"  class="rounded-md bg-gray-900 px-3 py-2 text-sm  font-medium text-white cursor-pointer whitespace-nowrap">My Vehicles</a>
+              <a *ngIf=" role=='' || role=='USER' " routerLink="home"  class="rounded-md bg-gray-900 px-3 py-2 text-sm font-medium text-white cursor-pointer" aria-current="page">Home</a>
+              <a *ngIf=" role=='OWNER' " routerLink="add" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white cursor-pointer whitespace-nowrap">Add Vehicle</a>
               <a routerLink="about" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white cursor-pointer">About</a>
               <a routerLink="contact"class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white cursor-pointer">Contact</a>
             <div class="w-full max-w-sm min-w-[200px]">
@@ -97,8 +97,9 @@
               <div class="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black/5 focus:outline-hidden" role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabindex="-1">
                 <!-- Active: "bg-gray-100 outline-hidden", Not Active: "" -->
                 <a routerLink="home/user/user-profile" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-0">Your Profile</a>
-                <a routerLink="Home" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-1">Settings</a>
-                <a routerLink="Home" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-2">Sign out</a>
+                <a  class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-1">Settings</a>
+                <a *ngIf="logInStatus" (click)="onLoggedOut()" class="block px-4 py-2 text-sm text-gray-700 cursor-pointer" role="menuitem" tabindex="-1" id="user-menu-item-2">logOut</a>
+                <a *ngIf="!logInStatus" routerLink="login" class="block px-4 py-2 text-sm text-gray-700 cursor-pointer" role="menuitem" tabindex="-1" id="user-menu-item-2">logIn</a>
               </div>
             }
         </div>

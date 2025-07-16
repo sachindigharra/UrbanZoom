@@ -19,7 +19,6 @@ export class VehicleList implements OnInit {
     this.vehicleService.getAvailableVehicles().subscribe((res:VehicleResponse[])=>{
         this.vehicleList = res;
         this.cdr.detectChanges();
-        debugger;
       })
   }
 

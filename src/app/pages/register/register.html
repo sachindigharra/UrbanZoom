@@ -1,0 +1,84 @@
+<div
+      class="max-w-screen-xl m-0 sm:m-20 bg-white shadow sm:rounded-lg flex justify-center flex-1"
+    >
+    <div class="lg:w-1/2 xl:w-5/12 p-6 sm:p-12">
+        <div class="">
+          <!-- Register Form -->
+            
+            <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" class="w-full max-w-md bg-white rounded-xl space-y-6">
+            <h2 class="text-2xl font-semibold text-center text-gray-800">Create Account</h2>
+
+            <!-- Username -->
+            <div>
+                <label class="block text-sm font-medium text-gray-700">Username</label>
+                <input type="text" formControlName="username" placeholder="Enter username"
+                class="mt-1 w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2"
+                [ngClass]="{'ring-red-500 border-red-500': f.username.invalid && (f.username.dirty || f.username.touched)}" />
+                <div *ngIf="f.username.invalid && (f.username.dirty || f.username.touched)" class="text-red-500 text-xs mt-1">
+                <div *ngIf="f.username.errors?.required">Username is required</div>
+                <div *ngIf="f.username.errors?.minlength">Min 6 characters</div>
+                <div *ngIf="f.username.errors?.maxlength">Max 30 characters</div>
+                </div>
+            </div>
+
+            <!-- Email -->
+            <div>
+                <label class="block text-sm font-medium text-gray-700">Email</label>
+                <input type="email" formControlName="email" placeholder="Enter email"
+                class="mt-1 w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2"
+                [ngClass]="{'ring-red-500 border-red-500': f.email.invalid && (f.email.dirty || f.email.touched)}" />
+                <div *ngIf="f.email.invalid && (f.email.dirty || f.email.touched)" class="text-red-500 text-xs mt-1">
+                <div *ngIf="f.email.errors?.required">Email is required</div>
+                <div *ngIf="f.email.errors?.email">Invalid email format</div>
+                </div>
+            </div>
+
+            <!-- Password -->
+            <div>
+                <label class="block text-sm font-medium text-gray-700">Password</label>
+                <input type="password" formControlName="password" placeholder="Enter password"
+                class="mt-1 w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2"
+                [ngClass]="{'ring-red-500 border-red-500': f.password.invalid && (f.password.dirty || f.password.touched)}" />
+                <div *ngIf="f.password.invalid && (f.password.dirty || f.password.touched)" class="text-red-500 text-xs mt-1">
+                <div *ngIf="f.password.errors?.required">Password is required</div>
+                <div *ngIf="f.password.errors?.minlength">Min 8 characters</div>
+                <div *ngIf="f.password.errors?.pattern">At least 1 uppercase & 1 special character</div>
+                </div>
+            </div>
+
+            <!-- Role -->
+            <div>
+                <label class="block text-sm font-medium text-gray-700">Role</label>
+                <select formControlName="role"
+                class="mt-1 w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2"
+                [ngClass]="{'ring-red-500 border-red-500': f.role.invalid && (f.role.dirty || f.role.touched)}">
+                <option value="">Select role</option>
+                <option value="USER">User</option>
+                <option value="OWNER">Owner</option>
+                <option value="ADMIN">Admin</option>
+                </select>
+                <div *ngIf="f.role.invalid && (f.role.dirty || f.role.touched)" class="text-red-500 text-xs mt-1">
+                Role is required
+                </div>
+            </div>
+
+            <!-- Submit -->
+            <button type="submit" class="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition duration-200">
+                Register
+            </button>
+
+            <p class="text-center text-sm text-gray-600">
+                Already have an account?
+                <a routerLink="/login" class="text-blue-600 hover:underline">Login</a>
+            </p>
+            </form>
+        </div>
+    </div>
+    <div class="flex-1 bg-indigo-100 text-center hidden lg:flex">
+        <div
+          class="m-12 xl:m-16 w-full bg-contain bg-center bg-no-repeat"
+          style="background-image: url('https://storage.googleapis.com/devitary-image-host.appspot.com/15848031292911696601-undraw_designer_life_w96d.svg');"
+        ></div>
+    </div>
+ </div>
+    

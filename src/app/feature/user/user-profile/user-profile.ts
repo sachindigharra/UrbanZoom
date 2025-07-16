@@ -18,7 +18,7 @@ import { PercentageShow } from '../../../shared/resuable/percentage-show/percent
 export class UserProfile {
   ngOnInit(): void {
     this.setLoading(true);
-    this.userService.getUser("u_0-oBRt").subscribe({
+    this.userService.getUserProfileDetail("u_0-oBRt").subscribe({
       next: (data: UserResponse) => {
         this.userProfile = data;
         this.user={
